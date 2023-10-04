@@ -21,3 +21,6 @@ void main(void)
     interrupt_main();
 #endif
 }
+#ifdef BUSY_ACTIVITY
+    busy_main();
+#endif

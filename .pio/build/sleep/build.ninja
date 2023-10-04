@@ -140,6 +140,16 @@ build guiconfig: phony CMakeFiles/guiconfig
 
 build cmake_object_order_depends_target_app: phony || zephyr/driver_validation_h_target zephyr/kobj_types_h_target zephyr/syscall_list_h_target zephyr/zephyr_generated_headers
 
+build CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/busy.c.obj: C_COMPILER__app_ /home/will/Documents/Lab5_emmaw_willg/src/busy.c || cmake_object_order_depends_target_app
+  DEFINES = -DHSE_VALUE=8000000 -DKERNEL -DSTM32F072xB -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -D_FORTIFY_SOURCE=2 -D__LINUX_ERRNO_EXTENSIONS__ -D__PROGRAM_START -D__ZEPHYR__=1
+  DEP_FILE = CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/busy.c.obj.d
+  FLAGS = -Os -imacros /home/will/Documents/Lab5_emmaw_willg/.pio/build/sleep/zephyr/include/generated/autoconf.h -ffreestanding -fno-common -g -gdwarf-4 -fdiagnostics-color=always -mcpu=cortex-m0 -mthumb -mabi=aapcs -mfp16-format=ieee -imacros /home/will/.platformio/packages/framework-zephyr/include/toolchain/zephyr_stdint.h -Wall -Wformat -Wformat-security -Wno-format-zero-length -Wno-main -Wno-pointer-sign -Wpointer-arith -Wexpansion-to-defined -Wno-unused-but-set-variable -Werror=implicit-int -fno-asynchronous-unwind-tables -fno-pie -fno-pic -fno-strict-overflow -fno-reorder-functions -fno-defer-pop -fmacro-prefix-map=/home/will/Documents/Lab5_emmaw_willg/zephyr=CMAKE_SOURCE_DIR -fmacro-prefix-map=/home/will/.platformio/packages/framework-zephyr=ZEPHYR_BASE -ffunction-sections -fdata-sections -specs=nano.specs -std=c99
+  INCLUDES = -I/home/will/.platformio/packages/framework-zephyr/include -I/home/will/Documents/Lab5_emmaw_willg/.pio/build/sleep/zephyr/include/generated -I/home/will/.platformio/packages/framework-zephyr/soc/arm/st_stm32/stm32f0 -I/home/will/.platformio/packages/framework-zephyr/lib/libc/newlib/include -I/home/will/.platformio/packages/framework-zephyr/drivers -I/home/will/.platformio/packages/framework-zephyr/soc/arm/st_stm32/common -I/home/will/.platformio/packages/framework-zephyr/_pio/modules/hal/cmsis/CMSIS/Core/Include -I/home/will/.platformio/packages/framework-zephyr/_pio/modules/hal/stm32/stm32cube/stm32f0xx/soc -I/home/will/.platformio/packages/framework-zephyr/_pio/modules/hal/stm32/stm32cube/stm32f0xx/drivers/include -I/home/will/.platformio/packages/framework-zephyr/_pio/modules/hal/stm32/stm32cube/stm32f0xx/drivers/include/Legacy -I/home/will/.platformio/packages/framework-zephyr/_pio/modules/hal/stm32/stm32cube/common_ll/include
+  OBJECT_DIR = CMakeFiles/app.dir
+  OBJECT_FILE_DIR = CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src
+  TARGET_COMPILE_PDB = CMakeFiles/app.dir/app.pdb
+  TARGET_PDB = app/libapp.pdb
+
 build CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/gpio_interrupt.c.obj: C_COMPILER__app_ /home/will/Documents/Lab5_emmaw_willg/src/gpio_interrupt.c || cmake_object_order_depends_target_app
   DEFINES = -DHSE_VALUE=8000000 -DKERNEL -DSTM32F072xB -DUSE_FULL_LL_DRIVER -DUSE_HAL_DRIVER -D_FORTIFY_SOURCE=2 -D__LINUX_ERRNO_EXTENSIONS__ -D__PROGRAM_START -D__ZEPHYR__=1
   DEP_FILE = CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/gpio_interrupt.c.obj.d
@@ -198,7 +208,7 @@ build CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/sleep.c.obj: C
 #############################################
 # Link the static library app/libapp.a
 
-build app/libapp.a: C_STATIC_LIBRARY_LINKER__app_ CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/gpio_interrupt.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/kernel.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/main.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/rtc.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/sleep.c.obj || zephyr/driver_validation_h_target zephyr/kobj_types_h_target zephyr/syscall_list_h_target zephyr/zephyr_generated_headers
+build app/libapp.a: C_STATIC_LIBRARY_LINKER__app_ CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/busy.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/gpio_interrupt.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/kernel.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/main.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/rtc.c.obj CMakeFiles/app.dir/home/will/Documents/Lab5_emmaw_willg/src/sleep.c.obj || zephyr/driver_validation_h_target zephyr/kobj_types_h_target zephyr/syscall_list_h_target zephyr/zephyr_generated_headers
   OBJECT_DIR = CMakeFiles/app.dir
   POST_BUILD = :
   PRE_LINK = :
