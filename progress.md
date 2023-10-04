@@ -6,6 +6,47 @@
     4. Once you are finished, modify the code - introduce a k_busy_wait call after the GPIO is toggled. 1.Busy wait sets the processor in a tight loop (usually a counter loop with a noop body). 1. Measure the jitter with several delay values.
 2. Measure the jitter of the Agilent function generator operating at the same frequency for comparison.
 
+## Sleep
+| Sleep Normal   | Min     | Max    | Mean    | StdDev    |
+| -------------- | ------- | ------ | ------- | --------- |
+| Period    (ms) | 2.19472 | 2.1956 | 2.19472 | 176 ns    |
+| Frequency (Hz) | 455.518 | 455.77 | 455.595 | 28.35 mHz |
+| Duty Cycle  (%)   | 49.98 % | 50.04% | 50.04%  |.01%           | 
+
+| Sleep w/k_busy_wait  | Min     | Max     | Mean    | StdDev     |
+| -------------- | ------- | ------- | ------- | ---------- |
+| Period (ms)    | 4.1816  | 4.18792 | 4.18704 | 246.4 ns   |
+| Frequency (Hz) | 238.794 | 238.912 | 238.834 | 14.554 mHz |
+| Duty Cycle (%)    | 50      | 50.02   | 50.02   | 0.00       |
+
+## Kernel
+
+| Kernel Normal  | Min     | Max     | Mean     | StdDev |
+| -------------- | ------- | ------- | -------- | ------ |
+| Period (ms)    | 1.99584 | 1.99584 | 1.999584 | 0      |
+| Frequency (Hz) | 500.951 | 501.103 | 501.037  | 31 mHz |
+| Duty Cycle (%)     | 50.0    | 50.04   | 50.04    | 0.01       |
+
+| Kernel w/k_busy_wait | Min     | Max      | Mean    | StdDev    |
+| -------------------- | ------- | -------- | ------- | --------- |
+| Period (ms)          | 3.98816 | 3.989904 | 3.98904 | 431.2 ns  |
+| Frequency  (Hz)      | 250.674 | 250.756  | 250.716 | 19.68 mHz |
+| Duty Cycle (%)       | 49.9    | 50.02    | 50.02   | 0.01          |
+
+## Busy 
+| Busy           | Min     | Max     | Mean    | StdDev      |
+| -------------- | ------- | ------- | ------- | ----------- |
+| Period (ms)    | 1.99958 | 2.00035 | 2.00002 | 150.7 ns    |
+| Frequency (Hz) | 499.87  | 500.17  | 499.97  | 55.7136 mHz |
+| Duty Cycle (%) | 49.97   | 50.05   | 50.01   | 0            |
+
+| Busy w/k_busy_wait | Min     | Max     | Mean    | StdDev     |
+| ------------------ | ------- | ------- | ------- | ---------- |
+| Period (ms)        | 3.99773 | 3.9949  | 3.99861 | 233.2 ns   |
+| Frequency (Hz)     | 250.01  | 250.141 | 250.081 | 17.963 mHz |
+| Duty Cycle (%)     | 49.98   | 50.03   | 50.01   | 0          | 
+
+
 
 
 # Activity 2
@@ -25,20 +66,35 @@ busy_wait requires much more power
 
 
 (sleep call, kernel based functionality), sleep is scheduluer
-| Sleep      | Min                 | Max         | Mean        | StdDev     |
-| ---------- | ------------------- | ----------- | ----------- | ---------- |
-| Period     | 220.36 $\mu$seconds | 220.5102    | 220.455     | 18.814 ns  |
-| Frequency  | 4.53498 kHz         | 4.53799 kHz | 4.53616 kHz | 382.58 mHz |
-| Duty Cycle | 49.79%              | 49.8%       | 49.79%      | 0%         |
 
-Kernel (kernel timer (software based timer)), sleep is scheduler
-| Kernel      | Min                  | Max         | Mean                  | StdDev             |
-| ---------- | -------------------- | ----------- | --------------------- | ------------------ |
-| Period     | 400.798 microseconds | 400.9636    | 400.8716 microseconds | 29.808 nanoseconds |
-| Frequency  | 2.49394 kHz          | 2.49513 kHz | 2.494522 kHz          | 203 mHz            |
-| Duty Cycle | 49.89%               | 49.92%      | 49.9%                 | 0%                 | 
+## Gpio_interrupt
+
+| GPIO           | Min | Max | Mean | StdDev |
+| -------------- | --- | --- | ---- | ------ |
+| Period (ms)    |     |     |      |        |
+| Frequency (Hz) |     |     |      |        |
+| Duty Cycle (%) |     |     |      |        |
 
 
+| GPIO w/k_busy_wait           | Min | Max | Mean | StdDev |
+| -------------- | --- | --- | ---- | ------ |
+| -------------- | --- | --- | ---- | ------ |
+| Period (ms)    |     |     |      |        |
+| Frequency (Hz) |     |     |      |        |
+| Duty Cycle (%) |     |     |      |        |
+
+## RTC
+| RTC           | Min | Max | Mean | StdDev |
+| -------------- | --- | --- | ---- | ------ |
+| Period (ms)    |     |     |      |        |
+| Frequency (Hz) |     |     |      |        |
+| Duty Cycle (%) |     |     |      |        |
+
+| RTC w/k_busy_wait           | Min | Max | Mean | StdDev |
+| -------------- | --- | --- | ---- | ------ |
+| Period (ms)    |     |     |      |        |
+| Frequency (Hz) |     |     |      |        |
+| Duty Cycle (%) |     |     |      |        |
 # Activity 3
 
 1. To save to a flash drive inserted into the front panel

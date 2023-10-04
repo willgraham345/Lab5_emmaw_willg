@@ -15,5 +15,7 @@ void sleep_main(void)
     while (1) {
         gpio_pin_toggle(dev_out, PIN_OUT);
         k_sleep(K_MSEC(1));
+        // // Adding a busy wait to test clock drift. 
+        k_busy_wait(1000);
     }
 }
