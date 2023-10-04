@@ -11,6 +11,7 @@
 
 struct gpio_callback callback;
 
+const struct device *dev_in, *dev_out;
 void pin_interrupt(const struct device *port,
                    struct gpio_callback *cb,
                    gpio_port_pins_t pins_)
@@ -20,7 +21,6 @@ void pin_interrupt(const struct device *port,
 
 void interrupt_main(void)
 {
-	const struct device *dev_in, *dev_out;
     dev_in = device_get_binding(DT_LABEL(DEV_IN));
     dev_out = device_get_binding(DT_LABEL(DEV_OUT));
 
