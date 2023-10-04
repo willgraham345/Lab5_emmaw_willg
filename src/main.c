@@ -1,6 +1,6 @@
 extern void sleep_main(void);
 extern void kernel_main(void);
-extern void rtc_main(void);
+//extern void rtc_main(void);
 extern void interrupt_main(void);
 extern void busy_main(void);
 
@@ -15,7 +15,8 @@ void main(void)
 #endif
 
 #ifdef RTC_ACTIVITY
-    rtc_main();
+    //rtc_main();
+    kernel_main();
 #endif
 
 #ifdef INTERRUPT_ACTIVITY

@@ -10,13 +10,15 @@
 #define PIN_IN 1
 
 struct gpio_callback callback;
-
 const struct device *dev_in, *dev_out;
+
 void pin_interrupt(const struct device *port,
                    struct gpio_callback *cb,
                    gpio_port_pins_t pins_)
 {
-    gpio_pin_toggle(port, PIN_OUT);
+    // Adding a busy wait to test delay increase
+    k_busy_wait(200);
+    gpio_pin_toggle(dev_out, PIN_OUT);
 }
 
 void interrupt_main(void)
@@ -26,8 +28,8 @@ void interrupt_main(void)
 
     gpio_pin_configure(dev_out, PIN_OUT, GPIO_OUTPUT_ACTIVE);
     gpio_pin_configure(dev_in, PIN_IN, GPIO_INPUT);
-    if (!gpio_pin_interrupt_configure(dev_in, PIN_IN, GPIO_INT_EDGE_RISING))
-        return;
+    gpio_pin_interrupt_configure(dev_in, PIN_IN, GPIO_INT_EDGE_RISING);
     gpio_init_callback(&callback, pin_interrupt, 1 << PIN_IN);
+    gpio_add_callback(dev_in, &callback);
     k_sleep(K_FOREVER);
 }
