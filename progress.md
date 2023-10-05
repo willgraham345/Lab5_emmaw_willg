@@ -13,11 +13,15 @@
 | Frequency (Hz) | 455.518 | 455.77 | 455.595 | 28.35 mHz |
 | Duty Cycle  (%)   | 49.98 % | 50.04% | 50.04%  |.01%           | 
 
+Drift over 1 hour: 351s
+
 | Sleep w/k_busy_wait  | Min     | Max     | Mean    | StdDev     |
 | -------------- | ------- | ------- | ------- | ---------- |
 | Period (ms)    | 4.1816  | 4.18792 | 4.18704 | 246.4 ns   |
 | Frequency (Hz) | 238.794 | 238.912 | 238.834 | 14.554 mHz |
 | Duty Cycle (%)    | 50      | 50.02   | 50.02   | 0.00       |
+
+Drift over 1 hour: 171s
 
 ## Kernel
 
@@ -27,11 +31,15 @@
 | Frequency (Hz) | 500.951 | 501.103 | 501.037  | 31 mHz |
 | Duty Cycle (%)     | 50.0    | 50.04   | 50.04    | 0.01       |
 
+Drift over 1 hour: -1.8s
+
 | Kernel w/k_busy_wait | Min     | Max      | Mean    | StdDev    |
 | -------------------- | ------- | -------- | ------- | --------- |
 | Period (ms)          | 3.98816 | 3.989904 | 3.98904 | 431.2 ns  |
 | Frequency  (Hz)      | 250.674 | 250.756  | 250.716 | 19.68 mHz |
 | Duty Cycle (%)       | 49.9    | 50.02    | 50.02   | 0.01          |
+
+Drift over 1 hour: -9s
 
 ## Busy 
 | Busy           | Min     | Max     | Mean    | StdDev      |
@@ -40,13 +48,15 @@
 | Frequency (Hz) | 499.87  | 500.17  | 499.97  | 55.7136 mHz |
 | Duty Cycle (%) | 49.97   | 50.05   | 50.01   | 0            |
 
+Drift over 1 hour: 0.2s
+
 | Busy w/k_busy_wait | Min     | Max     | Mean    | StdDev     |
 | ------------------ | ------- | ------- | ------- | ---------- |
 | Period (ms)        | 3.99773 | 3.9949  | 3.99861 | 233.2 ns   |
 | Frequency (Hz)     | 250.01  | 250.141 | 250.081 | 17.963 mHz |
 | Duty Cycle (%)     | 49.98   | 50.03   | 50.01   | 0          | 
 
-
+Drift over 1 hour: -0.9s
 
 # Activity 2
 1. Review and run the code `gpio_interrupt.c`
@@ -56,6 +66,21 @@
 4. Measure the delay between the sync signal and the output from the board.
 5. Increase the delay using a busy wait loop as before.
 
+| gpio_interrupt | Min    | Max   | Mean   | StdDev  |
+| -------------- | ------ | ----- | ------ | ------- |
+| Period (ms)    | 0.941  | 16.94 | 4.146  | 1.34ns  |
+| Frequency (Hz) | 59.034 | 1062  | 247.9  | 25.0003 |
+| Duty Cycle (%) | 10.24  | 94.60 | 50.04  | 1.43%   | 
+| Delay (μs)     | -991.5   | 992  | 26.41 | 1.0002  | 
+
+| gpio_interrupt w/k_busy_wait | Min     | Max     | Mean    | StdDev  |
+| ---------------------------- | ------- | ------- | ------- | ------- |
+| Period (ms)                  | 3.99    | 4.00014 | 4.00005 | 61.2ns  |
+| Frequency (Hz)               | 249.99  | 250.009 | 249.998 | 3.64mHz |
+| Duty Cycle (%)               | 50.00   | 50.02   | 50.01   | 0       | 
+| Delay (μs)                   | -787.5  | 788     | 256.69  | 1.0009  | 
+
+The k_busy_wait in this case was 200μs
 
 # Activity 3
 1. Modify the interrupt handler by adding in a message queue.
