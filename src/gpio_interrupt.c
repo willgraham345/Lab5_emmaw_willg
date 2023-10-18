@@ -8,12 +8,24 @@
 #define DEV_OUT DT_NODELABEL(gpioa)
 #define PIN_OUT 0
 #define PIN_IN 1
-#define K_MSGQ_DEFINE(my_msgq, sizeof(int), 10, 1);
+#define MY_STACK_SIZE 2000
+
+
 struct gpio_callback callback;
 const struct device *dev_in, *dev_out;
 
+// MESSAGE QUEUE
 //Define message queue with data_item_type description
-struct k_msgq msgq;
+K_MSGQ_DEFINE(msgq, sizeof(int), 4, 2);
+
+// LISTENER
+K_THREAD_STACK_DEFINE(listener_stack, MY_STACK_SIZE);
+struct k_thread listener_thread;
+
+
+
+
+
 
 void pin_interrupt(const struct device *port,
                    struct gpio_callback *cb,
@@ -25,10 +37,26 @@ void pin_interrupt(const struct device *port,
     // gpio_pin_toggle(dev_out, PIN_OUT);
 
     // Send message 
+    //Write one message to the message queue
     int data_item = 1;
     while (k_msgq_put(&msgq, &data_item, K_NO_WAIT) != 0) {
-        k_msgq_purge(&msgq);
+        k_msgq_purge(&msgq); //purges old data if whlie loop conditional doesn't run correctly :)
     } 
+}
+
+void listener_thread_entry_point(void){
+//TODO: Implement listener thread entry point.
+// Should: read message from queue and toggle output pin upon message receive. 
+    int int_signal = 0;
+    while (1) {
+        // Reads the message
+        while (k_msgq_get(&msgq, &int_signal, K_FOREVER) != 0){
+            // Do nothing
+        }
+        // Toggle output pin upon message receiving
+        gpio_pin_toggle(dev_out, PIN_OUT);
+
+    }
 }
 
 void interrupt_main(void)
@@ -48,7 +76,10 @@ void interrupt_main(void)
     gpio_init_callback(&callback, pin_interrupt, 1 << PIN_IN);
     gpio_add_callback(dev_in, &callback);
 
-    //Write one message to the message queue
+
+    // dedicate memory and stack for new thread
+    k_thread_create(&listener_thread, listener_stack, MY_STACK_SIZE, (k_thread_entry_t) listener_thread_entry_point, NULL, NULL, NULL, K_PRIO_COOP(7), 0, K_NO_WAIT);
+
 
     k_sleep(K_FOREVER);
 }
