@@ -23,10 +23,6 @@ K_THREAD_STACK_DEFINE(listener_stack, MY_STACK_SIZE);
 struct k_thread listener_thread;
 
 
-
-
-
-
 void pin_interrupt(const struct device *port,
                    struct gpio_callback *cb,
                    gpio_port_pins_t pins_)
@@ -45,7 +41,6 @@ void pin_interrupt(const struct device *port,
 }
 
 void listener_thread_entry_point(void){
-//TODO: Implement listener thread entry point.
 // Should: read message from queue and toggle output pin upon message receive. 
     int int_signal = 0;
     while (1) {
@@ -76,6 +71,9 @@ void interrupt_main(void)
     gpio_init_callback(&callback, pin_interrupt, 1 << PIN_IN);
     gpio_add_callback(dev_in, &callback);
 
+    gpio_pin_toggle(dev_out, PIN_OUT);
+    k_sleep(K_MSEC(250));
+    gpio_pin_toggle(dev_out, PIN_OUT);
 
     // dedicate memory and stack for new thread
     k_thread_create(&listener_thread, listener_stack, MY_STACK_SIZE, (k_thread_entry_t) listener_thread_entry_point, NULL, NULL, NULL, K_PRIO_COOP(7), 0, K_NO_WAIT);
