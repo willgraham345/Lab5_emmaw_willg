@@ -88,3 +88,23 @@ The k_busy_wait in this case was 200μs
 3. Create a new thread that reads messages from the queue and toggles the output pin when a message is received.
 4. Measure the latency again.
 5. Add a busy wait delay to the message handler.
+
+No busy_wait
+| Thing      | Min     | Max        | Mean      | StdDev    |
+| ---------- | ------- | ---------- | --------- | --------- |
+| Period     | 7.99974 | 8.00046 ms | 8.0001 ms | 122.4 ns  |
+| Frequency  | 124.993 | 125        | 124.9990  | 1.736 mHz |
+| Duty Cycle | 49.99   | 50.01      | 50.00     | 0.00      |
+| Delay      | 4.02696 | 4.02804    | 4.0275    | 198.8 ns  | 
+
+
+Delay of 30 ms
+
+| Thing      | Min     | Max     | Mean    | StdDev    |
+| ---------- | ------- | ------- | ------- | --------- |
+| Period     | 7.9992  | 8.00064 | 8.0001  | 160.2 ns  |
+| Frequency  | 124.989 | 125.012 | 124.999 | 2.282 mHz |
+| Duty Cycle | 49.99   | 50.03   | 50      | 0.0       |
+| Delay      | 7.01874 | 7.02144 | 7.01964 | 358.2 ns  | 
+
+
