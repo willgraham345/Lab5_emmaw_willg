@@ -1,13 +1,12 @@
-# Lab 5, embedded systems
-## Activity 1
+# Activity 1
 1. For each of the cases, use an oscilloscope to measure jitter and drift of the time keeping method.
     1. Read through the code, see what it does.
-    2. Load the code onto your board (e.g. `pio run -t upload -e sleep`)
+    2. Load the code onto your board (e.g. `pio run -t upload -e sleep`)
     3. Measure the jitter (see instructions below)
     4. Once you are finished, modify the code - introduce a k_busy_wait call after the GPIO is toggled. 1.Busy wait sets the processor in a tight loop (usually a counter loop with a noop body). 1. Measure the jitter with several delay values.
 2. Measure the jitter of the Agilent function generator operating at the same frequency for comparison.
 
-### Sleep
+## Sleep
 | Sleep Normal   | Min     | Max    | Mean    | StdDev    |
 | -------------- | ------- | ------ | ------- | --------- |
 | Period    (ms) | 2.19472 | 2.1956 | 2.19472 | 176 ns    |
@@ -24,7 +23,7 @@ Drift over 1 hour: 351s
 
 Drift over 1 hour: 171s
 
-### Kernel
+## Kernel
 
 | Kernel Normal  | Min     | Max     | Mean     | StdDev |
 | -------------- | ------- | ------- | -------- | ------ |
@@ -42,7 +41,7 @@ Drift over 1 hour: -1.8s
 
 Drift over 1 hour: -9s
 
-### Busy 
+## Busy 
 | Busy           | Min     | Max     | Mean    | StdDev      |
 | -------------- | ------- | ------- | ------- | ----------- |
 | Period (ms)    | 1.99958 | 2.00035 | 2.00002 | 150.7 ns    |
@@ -59,11 +58,11 @@ Drift over 1 hour: 0.2s
 
 Drift over 1 hour: -0.9s
 
-## Activity 2
-1. Review and run the code `gpio_interrupt.c`
+# Activity 2
+1. Review and run the code `gpio_interrupt.c`
 2. Attach the Sync output from the signal generator to the oscilloscope and use as the trigger.
 3. Drive the board with the signal generator output on pin A1.
-    1. **Make sure to check the output voltages on the oscilloscope before attaching it to your board or you'll let the magic smoke out!** Set amplitude HiLevel to 3.3V, LoLevel to 0.0 V.
+    1. **Make sure to check the output voltages on the oscilloscope before attaching it to your board or you'll let the magic smoke out!** Set amplitude HiLevel to 3.3V, LoLevel to 0.0 V.
 4. Measure the delay between the sync signal and the output from the board.
 5. Increase the delay using a busy wait loop as before.
 
@@ -83,7 +82,7 @@ Drift over 1 hour: -0.9s
 
 The k_busy_wait in this case was 200μs
 
-## Activity 3
+# Activity 3
 1. Modify the interrupt handler by adding in a message queue.
 2. From the interrupt handler send a message.
 3. Create a new thread that reads messages from the queue and toggles the output pin when a message is received.
@@ -99,10 +98,13 @@ No busy_wait
 | Delay      | 4.02696 | 4.02804    | 4.0275    | 198.8 ns  | 
 
 
-Busy wait delay of 3 ms (3000μs)
+Delay of 30 ms
+
 | Thing      | Min     | Max     | Mean    | StdDev    |
 | ---------- | ------- | ------- | ------- | --------- |
 | Period     | 7.9992  | 8.00064 | 8.0001  | 160.2 ns  |
 | Frequency  | 124.989 | 125.012 | 124.999 | 2.282 mHz |
 | Duty Cycle | 49.99   | 50.03   | 50      | 0.0       |
 | Delay      | 7.01874 | 7.02144 | 7.01964 | 358.2 ns  | 
+
+
